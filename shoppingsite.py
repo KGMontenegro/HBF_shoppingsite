@@ -64,13 +64,19 @@ def show_shopping_cart():
     # The logic here will be something like:
     #
     # - get the cart dictionary from the session
-    
+    melon_info = []
+    current_cart =session["cart"]
+    #print current_cart
+
+
     # - create a list to hold melon objects and a variable to hold the total
     #   cost of the order
-   
-    # cart =session.get{cart,{}}
 
-    # melon_order_total = 
+    melon_order_total = 0
+    for name in session['cart']:
+        melon = melons.get_by_id(name)
+        print price
+    #melon_order_total = melon[quantity] * melon[price]
     # # - loop over the cart dictionary, and for each melon id:
     # #    - get the corresponding Melon object
     # #    - compute the total cost for that type of melon
@@ -105,17 +111,16 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
 
-    count = 0
-    # cart = session["cart"]
 
-    session["cart"] = {}
-  
-    if "cart" in session:
-        session["cart"][melon_id] = count + 1
-    else:
-        session["cart"][melon_id] = 1
+    if "cart" not in session:
+        session["cart"] = {}
+    
+    cart = session["cart"]        
 
-    print "SESSION INFO", session["cart"]
+    cart[melon_id] = cart.get(melon_id, 0) + 1
+
+    #print "SESSION INFO", session["cart"]
+
 
     flash("Congrats! You're almost a melon owner!")
     return redirect("/cart")
