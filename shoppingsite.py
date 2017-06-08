@@ -75,7 +75,7 @@ def show_shopping_cart():
     melon_order_total = 0
     for name in session['cart']:
         melon = melons.get_by_id(name)
-        print price
+        print melon.price
     #melon_order_total = melon[quantity] * melon[price]
     # # - loop over the cart dictionary, and for each melon id:
     # #    - get the corresponding Melon object
